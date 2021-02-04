@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disease Classification</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<center><h1>Detection of COVID and Cardiac disease using deep learning</h1></center>
+
+<div class='divform'>
+	<center><h2>Upload Image or Enter URL</h2></center>
+
+
+<form action='upload' method="post" enctype="multipart/form-data">
+<label for="file-upload" class="custom-file-upload">
+      Upload Image
+</label>
+{% csrf_token %}
+<input id="file-upload" type="file" name="image"/>
+<input type="submit" class="custom-file-button">
+</form>
+
+
+
+<br>
+<p>OR</p>
+
+
+
+
+<form  action='upoadbyURL' method="POST"> 
+	
+    {% csrf_token %}
+    <input  type="url" placeholder="Add Image URL here" name="imgurls" >
+    <input type="submit" class="custom-url-button" >
+</form>
+</div>
+
+
+<center>	
+	<h3><center> Display Result </center></h3>
+{% if pred == "None" %}
+No image
+{% else %}
+<table>
+  <tr>
+    <th>Disease</th>
+    <th>Probability</th> 
+  </tr>
+{% for d,p in pred %}
+<tr>
+  <td>{{ d }}</td>
+  <td>{{ p }}</td>
+</tr>
+ 
+{% endfor %}
+</table>
+{% endif %}
+
+
+
+  <!-- <h2 style='color:red;'>  {{ pred }}</h2> -->
+
+  <h3><center> Display Image </center></h3>
+
+<img src="{{url}}" ,width="500" height="400">
+</center>	
+
+
+
+
+<div class="divalign">
+
+	<h2> Description</h2>
+<p>The dataset is comprised of ECG records of 1937 distinct patients. EDAN SERIES-3 ECG device is used to collect this data. 
+ </p>
+<h3>The data is collected from following hospitals</h3>
+<ul>
+<li>Ch. Pervaiz Elahi Institute of Cardiology, Multan</li>
+<li>Nishtar Medical University, Multan</li>
+<li>Institution: Punjab Institute of Cardiology, Lahore</li>
+</ul> 
+
+<h3>There are five categories in dataset</h3>
+<ul>
+  <li>COVID-19</li>
+<li>Abnormal Heartbeat</li>
+<li>Myocardial Infarction</li>
+<li>Previous History of MI, </li>
+<li>Normal Person</li>
+</ul> 
+<p>
+Data is available  <a href="https://www.sciencedirect.com/science/article/pii/S2352340921000469">here</a>.
+Our code implementation is available 
+ <a href="https://github.com/talhaanwarch/COVID_Cardiac_diseases_diagnosis">here</a>
+ </p>
+
+ <center><h4> Talha Anwar</h4></center>
+</div>
+</body>
+</html>
+
