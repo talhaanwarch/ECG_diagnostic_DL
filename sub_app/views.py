@@ -7,7 +7,7 @@ import requests
 import numpy as np
 
 
-diseases=['Covid', 'Normal', 'MI', 'MI_recovered', 'Normal']
+diseases=['Covid', 'AbNormal', 'MI', 'MI_recovered', 'Normal']
 
 
 def home(request):
